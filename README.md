@@ -92,21 +92,19 @@ python data/synthetic_generator.py --num_samples 100 --output_dir "data/processe
 
 ---
 
-## 📂 Example Output Payload
+## 🔍 Field Localization & OCR Extraction Results
 
-Terminal output during execution:
+Below is the end-to-end extraction pipeline showcasing the **YOLOv8 crop inputs** alongside the resulting **PaddleOCR Arabic text extractions**:
 
-```bash
---- Running PaddleOCR Extraction ---
-[FIRST_NAME]: Detected -> هانم
-[FULL_NAME]: Detected -> عبدالحميد مرعى مرعى
-[ADDRESS_1]: Detected -> تريان
-[ADDRESS_2]: Detected -> مركز الحامول كفر الشيخ
-[NATIONAL_ID]: Detected -> ٢٨٢٠٣٠٤١٥٠٠٢٤١
+<img src="assets/annotated_id_detection2.png" width="180"/>
 
-Success! Structured payload committed to SQLite DB: national_ids.db
-```
-
+| Target Field | Isolated YOLOv8 Crop | PaddleOCR Extracted Text | Status |
+| :--- | :---: | :---: | :---: |
+| **First Name** (`first_name`) | <img src="assets/paddle_crop_0_first_name.png" width="180"/> | `محمود` | ✅ Exact Match |
+| **Full Name** (`full_name`) | <img src="assets/paddle_crop_1_full_name.png" width="280"/> | `عبدالتواب مصطفى سالم` | ✅ Exact Match |
+| **Address Line 1** (`address_1`) | <img src="assets/paddle_crop_2_address_1.png" width="220"/> | `منية قلين` | ✅ Exact Match |
+| **Address Line 2** (`address_2`) | <img src="assets/paddle_crop_3_address_2.png" width="280"/> | `مركز قلين كفر الشيخ` | ✅ Exact Match |
+| **National ID** (`national_id`) | <img src="assets/paddle_crop_4_national_id2.png" width="300"/> | `٢٥٤٠٥٢١١٥٠****` | ✅ 14 Digits Valid |
 ---
 
 ## 📜 License
